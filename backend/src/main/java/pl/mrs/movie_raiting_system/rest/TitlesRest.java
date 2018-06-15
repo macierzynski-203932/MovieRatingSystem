@@ -2,6 +2,7 @@ package pl.mrs.movie_raiting_system.rest;
 
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
@@ -42,7 +43,9 @@ public class TitlesRest {
     })
     @GetMapping("/search")
     public ResponseEntity search(@RequestParam String query) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Access-Control-Allow-Origin", "*");
         List<TitleInfo> result = titlesService.searchForTitles(query);
-        return ResponseEntity.ok(result);
+        return ResponseEntity.ok().headers(headers).body(result);
     }
 }
