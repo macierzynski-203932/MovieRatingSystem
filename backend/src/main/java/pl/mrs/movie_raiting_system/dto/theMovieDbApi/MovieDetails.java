@@ -6,9 +6,15 @@ import lombok.*;
 @Builder
 @AllArgsConstructor(access = AccessLevel.PUBLIC)
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
-public class TvShowInfo {
+public class MovieDetails {
 
     private int id;
-    private String name;
+    private int budget;
+    private Genre[] genres;
+    private String overview;
     private String poster_path;
+    private String release_date;
+    private String title;
+    private Double vote_average;
+    private int vote_count;
 }

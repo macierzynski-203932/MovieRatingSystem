@@ -2,16 +2,10 @@
   <p class="card-header">Search for movies or tv shows</p>
   <input class="form-control" #searchBox id="search-box" placeholder="Search..." />
   <button (click)="searchSubmit(searchBox.value)" class="btn btn-primary">Search</button>
-  <table *ngIf="titlesList">
-    <tr>
-    <th>Poster</th>
-    <th>Title</th>
-    <th>Description</th>
-    </tr>
-    <tr *ngFor="let res of titlesList">
-      <th><img src="{{res.posterUrl}}" /></th>
-      <th>{{res.title}}</th>
-      <th>{{res.description}}</th>
+  <table class="table" *ngIf="titlesList">
+    <tr class="page-link" (click)="goToDetails(res)" *ngFor="let res of titlesList">
+      <th><img src="{{res.posterUrl}}" height="100"/></th>
+      <th class="titled-pane">{{res.title}}</th>
     </tr>
   </table>
 </div>
