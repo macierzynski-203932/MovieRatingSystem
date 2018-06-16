@@ -38,7 +38,7 @@ public class TitlesService {
         Arrays.stream(result.getResults())
                 .forEach(movieInfo -> titles.add(TitleInfoConverter.getTitleInfo(movieInfo)));
 
-        for (int i = 1; i < result.getTotal_pages(); i++) {
+        for (int i = 2; i <= result.getTotal_pages(); i++) {
             url = new StringBuilder("https://api.themoviedb.org/3/search/movie?api_key=" + apiKey + "&query=");
             url.append(query)
                     .append("&page=")
@@ -61,7 +61,7 @@ public class TitlesService {
         Arrays.stream(result.getResults())
                 .forEach(movieInfo -> titles.add(TitleInfoConverter.getTitleInfo(movieInfo)));
 
-        for (int i = 1; i < result.getTotal_pages(); i++) {
+        for (int i = 2; i <= result.getTotal_pages(); i++) {
             url = new StringBuilder("https://api.themoviedb.org/3/search/tv?api_key=" + apiKey + "&query=");
             url.append(query)
                     .append("&page=")
