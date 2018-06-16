@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.HttpClientErrorException;
 import pl.mrs.movie_raiting_system.dto.UserInfo;
 import pl.mrs.movie_raiting_system.service.DetailsService;
 
@@ -42,7 +43,7 @@ public class DetailsRest {
             HttpHeaders headers = new HttpHeaders();
             headers.add("Access-Control-Allow-Origin", "*");
             return ResponseEntity.ok().headers(headers).body(detailsService.getMovieInfo(id));
-        } catch (Exception e) { //something else here
+        } catch (HttpClientErrorException e) { //something else here
             return ResponseEntity.status(404).build();
         }
     }
