@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import pl.mrs.movie_raiting_system.dto.UserInfo;
-import pl.mrs.movie_raiting_system.service.UserService;
+import pl.mrs.movie_raiting_system.service.UserService2;
 
 import javax.persistence.EntityNotFoundException;
 
@@ -21,7 +21,7 @@ import javax.persistence.EntityNotFoundException;
 public class UserRest {
 
     @Autowired
-    private UserService userService;
+    private UserService2 userService;
 
     @ApiOperation(value = "Returns information about user",
             response = UserInfo.class)

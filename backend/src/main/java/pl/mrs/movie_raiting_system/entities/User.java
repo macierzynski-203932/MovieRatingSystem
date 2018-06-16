@@ -40,7 +40,7 @@ public class User {
 
     @Transient
     private String passwordConfirm;
-    
+
     @Email
     @NotBlank
     @Column(name = "email")

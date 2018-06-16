@@ -5,21 +5,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.RestTemplate;
-import pl.mrs.movie_raiting_system.converters.TitleInfoConverter;
 import pl.mrs.movie_raiting_system.dto.TitleInfo;
 import pl.mrs.movie_raiting_system.dto.UserInfo;
-import pl.mrs.movie_raiting_system.dto.theMovieDbApi.MovieInfo;
-import pl.mrs.movie_raiting_system.dto.theMovieDbApi.MovieList;
-import pl.mrs.movie_raiting_system.dto.theMovieDbApi.TitleList;
 import pl.mrs.movie_raiting_system.service.TitlesService;
-import pl.mrs.movie_raiting_system.service.UserService;
 
-import javax.persistence.EntityNotFoundException;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Stream;
 
 @RestController
 @RequestMapping("/api/title")
