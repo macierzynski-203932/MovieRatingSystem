@@ -2,10 +2,7 @@ package pl.mrs.movie_raiting_system.entities;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -21,23 +18,31 @@ import javax.validation.constraints.NotNull;
 public class User {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @NotNull
     private Long id;
 
     @NotBlank
+    @Column(name = "name")
     private String name;
 
     @NotBlank
+    @Column(name = "surname")
     private String surname;
 
     @NotBlank
-    private String login;
+    @Column(name = "username")
+    private String username;
 
     @NotBlank
+    @Column(name = "password")
     private String password;
 
+    @Transient
+    private String passwordConfirm;
+    
     @Email
     @NotBlank
+    @Column(name = "email")
     private String email;
 }
