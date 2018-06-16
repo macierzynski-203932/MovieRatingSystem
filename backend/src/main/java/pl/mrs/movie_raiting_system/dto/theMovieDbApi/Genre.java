@@ -6,9 +6,8 @@ import lombok.*;
 @Builder
 @AllArgsConstructor(access = AccessLevel.PUBLIC)
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
-public class TvShowInfo {
+public class Genre {
 
     private int id;
     private String name;
-    private String poster_path;
 }

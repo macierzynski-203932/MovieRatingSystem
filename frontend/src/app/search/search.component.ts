@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {SearchService} from './search.service';
 import {SearchResponse} from './models/search-response';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-search',
@@ -10,7 +11,8 @@ import {SearchResponse} from './models/search-response';
 export class SearchComponent implements OnInit {
 
   public titlesList: SearchResponse[];
-  constructor(private searchService: SearchService) { }
+  constructor(private searchService: SearchService,
+              private router: Router) { }
 
   ngOnInit() {
   }
@@ -18,8 +20,11 @@ export class SearchComponent implements OnInit {
   searchSubmit(value: string) {
     this.searchService.search(value).subscribe(response => {
       this.titlesList = response;
-      console.log("got it" + this.titlesList[0].title);
     });
+  }
+
+  goToDetails(title: SearchResponse) {
+      this.router.navigateByUrl('/details/movie/' + title.id);
   }
 
 }

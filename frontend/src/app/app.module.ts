@@ -11,13 +11,16 @@ import {HttpService} from './services/http.service';
 import {SearchService} from './search/search.service';
 import {HttpClient, HttpClientModule, HttpHandler} from '@angular/common/http';
 import {HttpErrorHandler} from './services/http-error-handler.service';
+import { MovieDetailsComponent } from './details/movie-details.component';
+import {DetailsService} from './details/details.service';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    SearchComponent
+    SearchComponent,
+    MovieDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -27,7 +30,8 @@ import {HttpErrorHandler} from './services/http-error-handler.service';
   providers: [
     Configuration,
     HttpService,
-    SearchService
+    SearchService,
+    DetailsService
   ],
   bootstrap: [AppComponent]
 })

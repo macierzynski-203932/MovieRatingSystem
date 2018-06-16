@@ -1,0 +1,33 @@
+<div *ngIf="details">
+  <table>
+    <tr>
+      <td width="300"><img src="{{details.poster_path}}" />
+      </td>
+      <td>
+        <table>
+          <tr>
+            <td width="200" align="left">Title: </td>
+            <td align="left">{{details.title}}</td>
+          </tr>
+          <tr>
+            <td align="left">Genres: </td>
+            <td align="left"><span *ngFor="let genre of details.genres">{{genre.name}} </span></td>
+          </tr>
+          <tr>
+            <td align="left">Budget: </td>
+            <td align="left">{{details.budget}}</td>
+          </tr>
+          <tr>
+            <td align="left">Release date: </td>
+            <td align="left">{{details.release_date}}</td>
+          </tr>
+          <tr>
+            <td align="left">Average vote: </td>
+            <td align="left">{{details.vote_average}}</td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+  {{details.overview}}
+</div>
