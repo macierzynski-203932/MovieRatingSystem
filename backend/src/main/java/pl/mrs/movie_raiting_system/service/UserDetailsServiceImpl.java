@@ -6,6 +6,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.mrs.movie_raiting_system.dao.UserRepository;
 import pl.mrs.movie_raiting_system.entities.User;
@@ -13,6 +14,7 @@ import pl.mrs.movie_raiting_system.entities.User;
 import java.util.Collection;
 import java.util.HashSet;
 
+@Service
 public class UserDetailsServiceImpl implements UserDetailsService {
     @Autowired
     private UserRepository userRepository;

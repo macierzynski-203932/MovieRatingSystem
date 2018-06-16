@@ -1,12 +1,14 @@
 package pl.mrs.movie_raiting_system.validator;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 import pl.mrs.movie_raiting_system.entities.User;
 import pl.mrs.movie_raiting_system.service.UserService;
 
+@Component
 public class UserValidator implements Validator {
     @Autowired
     private UserService userService;
