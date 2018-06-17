@@ -3,6 +3,7 @@ package pl.mrs.movie_raiting_system.rest;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +17,7 @@ import javax.persistence.EntityNotFoundException;
 
 @RestController
 @RequestMapping("/api/user")
+@CrossOrigin
 @Api(value = "Current user",
         basePath = "/api/user",
         produces = "application/json",

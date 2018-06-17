@@ -11,6 +11,7 @@ import { Router } from "@angular/router";
 export class LoginComponent {
 
   credentials = {username: '', password: ''};
+  error = false;
 
   constructor(private auth: AuthenticationService, private http: HttpClient, private router: Router) {
   }
@@ -19,6 +20,12 @@ export class LoginComponent {
     this.auth.authenticate(this.credentials, () => {
         this.router.navigateByUrl('/');
     });
+
+    if(this.auth.authenticated)
+      this.error = false;
+    else
+      this.error = true;
+
     return false;
   }
 
