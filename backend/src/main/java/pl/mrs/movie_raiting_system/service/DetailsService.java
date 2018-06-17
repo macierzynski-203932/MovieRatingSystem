@@ -1,6 +1,5 @@
 package pl.mrs.movie_raiting_system.service;
 
-import com.sun.deploy.util.ArrayUtil;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import pl.mrs.movie_raiting_system.converters.TvShowDetailsConverter;
