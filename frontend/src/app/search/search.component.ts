@@ -24,7 +24,10 @@ export class SearchComponent implements OnInit {
   }
 
   goToDetails(title: SearchResponse) {
+    if(!title.isTvShow)
       this.router.navigateByUrl('/details/movie/' + title.id);
+    else
+      this.router.navigateByUrl('/details/tv/' + title.id);
   }
 
 }
