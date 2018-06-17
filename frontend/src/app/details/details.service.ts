@@ -14,4 +14,10 @@ export class DetailsService {
     var url = this.configuration.ServerWithApiUrl + "/details/movie/" + id;
     return this.httpService.get<MovieDetails>(url);
   }
+
+  addMovieToFavourite( movie: MovieDetails): Observable<any> {
+    var AddToFavouriteUrl = this.configuration.ServerWithApiUrl + "/details/movie/favourite";
+  return this.httpService.post("http://localhost:8080/api/details/movie/favourite", movie);
+  }
+
 }

@@ -2,18 +2,13 @@ package pl.mrs.movie_raiting_system.rest;
 
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.HttpClientErrorException;
 import pl.mrs.movie_raiting_system.dto.UserInfo;
+import pl.mrs.movie_raiting_system.dto.theMovieDbApi.MovieDetails;
 import pl.mrs.movie_raiting_system.service.DetailsService;
-
-import javax.persistence.EntityNotFoundException;
 
 @RestController
 @RequestMapping("/api/details")
@@ -25,6 +20,7 @@ public class DetailsRest {
 
     @Autowired
     private DetailsService detailsService;
+
 
     @ApiOperation(value = "Gets movie details",
             response = UserInfo.class)
@@ -47,4 +43,20 @@ public class DetailsRest {
             return ResponseEntity.status(404).build();
         }
     }
+
+    @CrossOrigin(origins = "*")
+    @PostMapping("/movie/favourite")
+    public ResponseEntity saveFavouriteMovie(
+            @ApiParam(value = "favourite movie detail")@RequestBody MovieDetails movie) {
+        try {
+            System.out.println(org.hibernate.Version.getVersionString());
+            HttpHeaders headers = new HttpHeaders();
+            headers.add("Access-Control-Allow-Origin", "*");
+            detailsService.saveFavouriteMovie(movie);
+           return ResponseEntity.ok().headers(headers).body("dziala super!");
+        } catch (Exception e) {
+            return ResponseEntity.status(404).build();
+        }
+    }
+
 }
