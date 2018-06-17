@@ -13,6 +13,7 @@ import {HttpClient, HttpClientModule, HttpHandler} from '@angular/common/http';
 import {HttpErrorHandler} from './services/http-error-handler.service';
 import { MovieDetailsComponent } from './details/movie-details.component';
 import {DetailsService} from './details/details.service';
+import { TvShowDetailsComponent } from './details/tv-show-details/tv-show-details.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import {DetailsService} from './details/details.service';
     AppComponent,
     NavbarComponent,
     SearchComponent,
-    MovieDetailsComponent
+    MovieDetailsComponent,
+    TvShowDetailsComponent
   ],
   imports: [
     BrowserModule,

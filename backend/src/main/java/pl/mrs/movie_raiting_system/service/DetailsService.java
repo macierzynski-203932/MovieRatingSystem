@@ -1,16 +1,12 @@
 package pl.mrs.movie_raiting_system.service;
 
+import com.sun.deploy.util.ArrayUtil;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-import pl.mrs.movie_raiting_system.converters.TitleInfoConverter;
-import pl.mrs.movie_raiting_system.dto.TitleInfo;
+import pl.mrs.movie_raiting_system.converters.TvShowDetailsConverter;
+import pl.mrs.movie_raiting_system.dto.theMovieDbApi.Season;
+import pl.mrs.movie_raiting_system.dto.TvShowDetails;
 import pl.mrs.movie_raiting_system.dto.theMovieDbApi.MovieDetails;
-import pl.mrs.movie_raiting_system.dto.theMovieDbApi.MovieList;
-import pl.mrs.movie_raiting_system.dto.theMovieDbApi.TvShowList;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 @Service
 public class DetailsService {
@@ -23,6 +19,24 @@ public class DetailsService {
         result.setPoster_path("http://image.tmdb.org/t/p/w200/" + result.getPoster_path());
 
         return result;
+    }
+
+
+    public TvShowDetails getTvShowInfo(Long id) {
+        RestTemplate restTemplate = new RestTemplate();
+        String query = "https://api.themoviedb.org/3/tv/" + id + "?api_key=" + apiKey;
+        pl.mrs.movie_raiting_system.dto.theMovieDbApi.TvShowDetails result = restTemplate.getForObject(query, pl.mrs.movie_raiting_system.dto.theMovieDbApi.TvShowDetails.class);
+        result.setPoster_path("http://image.tmdb.org/t/p/w200/" + result.getPoster_path());
+        TvShowDetails details = TvShowDetailsConverter.getDetails(result);
+        details.setSeasons(new Season[details.getNumberOfSeasons()]);
+
+        for(int i=1; i <= details.getNumberOfSeasons(); i++) {
+            query = "https://api.themoviedb.org/3/tv/" + id + "/season/" + i + "?api_key=" + apiKey;
+            Season season = restTemplate.getForObject(query, Season.class);
+            details.getSeasons()[i - 1] = season;
+        }
+
+        return details;
     }
 
 }
