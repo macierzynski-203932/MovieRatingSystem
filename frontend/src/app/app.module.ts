@@ -15,6 +15,7 @@ import { MovieDetailsComponent } from './details/movie-details.component';
 import {DetailsService} from './details/details.service';
 import { FavouriteMoviesComponent } from './favourite-movies/favourite-movies.component';
 import  { FavouriteMoviesService } from "./favourite-movies/favourite-movies.service";
+import { TvShowDetailsComponent } from './details/tv-show-details/tv-show-details.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import  { FavouriteMoviesService } from "./favourite-movies/favourite-movies.ser
     NavbarComponent,
     SearchComponent,
     MovieDetailsComponent,
-    FavouriteMoviesComponent
+    FavouriteMoviesComponent,
+    TvShowDetailsComponent,
   ],
   imports: [
     BrowserModule,

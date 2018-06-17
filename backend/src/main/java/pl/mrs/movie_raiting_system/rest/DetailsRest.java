@@ -6,6 +6,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.HttpClientErrorException;
+import pl.mrs.movie_raiting_system.dto.TvShowDetails;
 import pl.mrs.movie_raiting_system.dto.UserInfo;
 import pl.mrs.movie_raiting_system.dto.theMovieDbApi.MovieDetails;
 import pl.mrs.movie_raiting_system.service.DetailsService;
@@ -25,7 +26,7 @@ public class DetailsRest {
     @ApiOperation(value = "Gets movie details",
             response = UserInfo.class)
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Operation succesful."),
+            @ApiResponse(code = 200, message = "Operation successful."),
             @ApiResponse(code = 401, message = "You are unauthorized."),
             @ApiResponse(code = 403, message = "You are forbidden to access this resource."),
             @ApiResponse(code = 404, message = "Information about movie unavailable."),
@@ -39,7 +40,30 @@ public class DetailsRest {
             HttpHeaders headers = new HttpHeaders();
             headers.add("Access-Control-Allow-Origin", "*");
             return ResponseEntity.ok().headers(headers).body(detailsService.getMovieInfo(id));
-        } catch (HttpClientErrorException e) { //something else here
+        } catch (HttpClientErrorException e) {
+            return ResponseEntity.status(404).build();
+        }
+    }
+
+
+    @ApiOperation(value = "Gets tv show details",
+            response = UserInfo.class)
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Operation successful."),
+            @ApiResponse(code = 401, message = "You are unauthorized."),
+            @ApiResponse(code = 403, message = "You are forbidden to access this resource."),
+            @ApiResponse(code = 404, message = "Information about show unavailable."),
+            @ApiResponse(code = 500, message = "Unknown error.")
+    })
+    @GetMapping("/tv/{id}")
+    public ResponseEntity getTvShowDetails(
+            @ApiParam(value = "ID of a tv show") @PathVariable Long id) {
+        try {
+            HttpHeaders headers = new HttpHeaders();
+            headers.add("Access-Control-Allow-Origin", "*");
+            TvShowDetails det = detailsService.getTvShowInfo(id);
+            return ResponseEntity.ok().headers(headers).body(det);
+        } catch (HttpClientErrorException e) {
             return ResponseEntity.status(404).build();
         }
     }
