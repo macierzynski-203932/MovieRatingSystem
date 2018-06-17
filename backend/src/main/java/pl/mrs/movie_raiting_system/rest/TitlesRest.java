@@ -12,6 +12,7 @@ import pl.mrs.movie_raiting_system.service.TitlesService;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/api/title")
 @Api(value = "Movies and tv shows",
         basePath = "/api/title",

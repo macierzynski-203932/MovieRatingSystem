@@ -1,11 +1,12 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Input, Output } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Configuration } from "../app.constants";
 
 @Injectable()
 export class AuthenticationService {
 
-  authenticated = false;
+    authenticated = false;
+    authenticatedUser: string;
 
   constructor(private http: HttpClient, private configuration: Configuration) {
   }
@@ -21,6 +22,7 @@ export class AuthenticationService {
         this.http.get(url, {headers: headers}).subscribe(response => {
             if (response['name']) {
                 this.authenticated = true;
+                this.authenticatedUser = response['name'];
             } else {
                 this.authenticated = false;
             }
