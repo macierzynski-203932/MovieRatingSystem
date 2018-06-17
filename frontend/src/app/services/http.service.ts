@@ -1,11 +1,27 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
+import { AuthenticationService } from './authentication.service';
 
 @Injectable()
 export class HttpService {
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private auth: AuthenticationService) {
+  }
+
+  authenticatedGet<T>(endpoint: string, httpOptions = {}): Observable<T> {
+
+    const options = {
+      headers: new HttpHeaders({
+        'Authorization': 'Basic ' + this.auth.storedCredentials
+      })
+    };
+
+    Object.assign(options, httpOptions);
+
+    return this.http.get<T>(endpoint, {
+      ...options
+    });
   }
 
   get<T>(endpoint: string, httpOptions = {}): Observable<T> {

@@ -17,7 +17,7 @@ import javax.persistence.EntityNotFoundException;
 
 @RestController
 @RequestMapping("/api/user")
-@CrossOrigin
+@CrossOrigin(origins="http://localhost:4200", allowCredentials="true")
 @Api(value = "Current user",
         basePath = "/api/user",
         produces = "application/json",

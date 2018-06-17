@@ -12,6 +12,6 @@ export class DetailsService {
 
   getMovieDetails(id: string) :Observable<MovieDetails> {
     var url = this.configuration.ServerWithApiUrl + "/details/movie/" + id;
-    return this.httpService.get<MovieDetails>(url);
+    return this.httpService.authenticatedGet<MovieDetails>(url);
   }
 }

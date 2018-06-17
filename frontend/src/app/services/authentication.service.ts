@@ -1,5 +1,6 @@
 import { Injectable, Input, Output } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { RequestOptions } from '@angular/http';
 import { Configuration } from "../app.constants";
 
 @Injectable()
@@ -7,6 +8,7 @@ export class AuthenticationService {
 
     authenticated = false;
     authenticatedUser: string;
+    storedCredentials: string;
 
   constructor(private http: HttpClient, private configuration: Configuration) {
   }
@@ -19,7 +21,9 @@ export class AuthenticationService {
             authorization : 'Basic ' + btoa(credentials.username + ':' + credentials.password)
         } : {});
 
-        this.http.get(url, {headers: headers}).subscribe(response => {
+        this.storedCredentials = credentials ? btoa(credentials.username + ':' + credentials.password) : "";
+
+        this.http.get(url, {headers: headers, withCredentials: true}).subscribe(response => {
             if (response['name']) {
                 this.authenticated = true;
                 this.authenticatedUser = response['name'];

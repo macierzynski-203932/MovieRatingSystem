@@ -17,8 +17,8 @@ import pl.mrs.movie_raiting_system.service.DetailsService;
 import javax.persistence.EntityNotFoundException;
 
 @RestController
-@CrossOrigin
 @RequestMapping("/api/details")
+@CrossOrigin(origins="http://localhost:4200", allowCredentials="true")
 @Api(value = "Movies and tv shows details",
         basePath = "/api/title",
         produces = "application/json",

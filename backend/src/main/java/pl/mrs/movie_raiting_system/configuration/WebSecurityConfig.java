@@ -41,8 +41,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
         	.antMatchers("/index.html", "/", "/h2/**", "/login", "*.bundle.*").permitAll()
         	.anyRequest().authenticated();
         
-        http.csrf().disable();
-        http.headers().frameOptions().disable();
+        //http.csrf().disable();
+        //http.headers().frameOptions().disable();
     }
 
     @Autowired

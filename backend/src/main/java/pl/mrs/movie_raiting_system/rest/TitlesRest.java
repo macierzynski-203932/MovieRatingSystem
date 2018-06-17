@@ -1,19 +1,26 @@
 package pl.mrs.movie_raiting_system.rest;
 
-import io.swagger.annotations.*;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import pl.mrs.movie_raiting_system.dto.TitleInfo;
 import pl.mrs.movie_raiting_system.dto.UserInfo;
 import pl.mrs.movie_raiting_system.service.TitlesService;
 
-import java.util.List;
-
 @RestController
-@CrossOrigin
 @RequestMapping("/api/title")
+@CrossOrigin(origins="http://localhost:4200", allowCredentials="true")
 @Api(value = "Movies and tv shows",
         basePath = "/api/title",
         produces = "application/json",
@@ -34,9 +41,7 @@ public class TitlesRest {
     })
     @GetMapping("/search")
     public ResponseEntity search(@RequestParam String query) {
-        HttpHeaders headers = new HttpHeaders();
-        headers.add("Access-Control-Allow-Origin", "*");
         List<TitleInfo> result = titlesService.searchForTitles(query);
-        return ResponseEntity.ok().headers(headers).body(result);
+        return ResponseEntity.ok().body(result);
     }
 }
