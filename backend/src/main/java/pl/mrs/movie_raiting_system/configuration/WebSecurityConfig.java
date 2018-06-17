@@ -13,6 +13,10 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
 
 @Configuration
 @EnableWebSecurity
@@ -35,14 +39,21 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
+        	.logout()
+        	.deleteCookies("JSESSIONID")
+        	.invalidateHttpSession(true)
+        	.clearAuthentication(true)
+        	.and()
+        	.cors()
+        	.and()
         	.httpBasic()
         	.and()
         	.authorizeRequests()
-        	.antMatchers("/index.html", "/", "/h2/**", "/login", "*.bundle.*").permitAll()
+        	.antMatchers("/index.html", "/", "/h2/**", "/logout/**", "*.bundle.*").permitAll()
         	.anyRequest().authenticated();
         
-        //http.csrf().disable();
-        //http.headers().frameOptions().disable();
+        http.csrf().disable();
+        http.headers().frameOptions().disable();
     }
 
     @Autowired
@@ -53,5 +64,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
     @Override
     public void configure(WebSecurity web) throws Exception {
         web.ignoring().antMatchers(HttpMethod.OPTIONS, "/**");
+    }
+    
+    @Bean
+    public CorsFilter corsFilter() {
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        CorsConfiguration config = new CorsConfiguration();
+        config.setAllowCredentials(true);
+        config.addAllowedOrigin("*"); 
+        config.addAllowedHeader("*");
+        config.addAllowedMethod("GET");
+        config.addAllowedMethod("POST");
+        config.addAllowedMethod("PUT");
+        source.registerCorsConfiguration("/logout", config);
+        return new CorsFilter(source);
     }
 }

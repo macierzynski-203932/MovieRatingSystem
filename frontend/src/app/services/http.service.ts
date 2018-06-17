@@ -30,6 +30,21 @@ export class HttpService {
     });
   }
 
+  authenticatedPost<T>(endpoint: string, body = {}, httpOptions = {}): Observable<T> {
+    
+    const options = {
+      headers: new HttpHeaders({
+        'Authorization': 'Basic ' + this.auth.storedCredentials
+      })
+    };
+
+    Object.assign(options, httpOptions);
+    
+    return this.http.post<T>(endpoint, body, {
+      ...options
+    });
+  }
+
   post<T>(endpoint: string, body, httpOptions = {}): Observable<T> {
     return this.http.post<T>(endpoint, body, {
       ...httpOptions

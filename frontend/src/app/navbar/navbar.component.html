@@ -13,7 +13,13 @@
       </ul>
 
 
-      <h1 class="text-light" *ngIf="authenticationService.authenticated; else loginOrRegisterBlock">{{authenticationService.authenticatedUser}}</h1>
+      <h1 class="text-light" *ngIf="authenticationService.authenticated; then userBlock; else loginOrRegisterBlock">{{authenticationService.authenticatedUser}}</h1>
+
+      <ng-template #userBlock>
+        <h2 class="text-light userBlock">{{authenticationService.authenticatedUser}}</h2>
+        <a (click)="logout()" class="btn btn-default logutBtn">Logout</a>
+      </ng-template>
+      
       <ng-template #loginOrRegisterBlock>
         <ul class="nav navbar-nav ml-auto">
           <li class="list-item">
