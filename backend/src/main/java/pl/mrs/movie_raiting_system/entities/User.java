@@ -22,11 +22,11 @@ public class User {
     @NotNull
     private Long id;
 
-    @NotBlank
+    //@NotBlank
     @Column(name = "name")
     private String name;
 
-    @NotBlank
+    //@NotBlank
     @Column(name = "surname")
     private String surname;
 
@@ -42,7 +42,7 @@ public class User {
     private String passwordConfirm;
 
     @Email
-    @NotBlank
+    //@NotBlank
     @Column(name = "email")
     private String email;
 }

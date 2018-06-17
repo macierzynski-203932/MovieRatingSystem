@@ -13,6 +13,9 @@ import {HttpClient, HttpClientModule, HttpHandler} from '@angular/common/http';
 import {HttpErrorHandler} from './services/http-error-handler.service';
 import { MovieDetailsComponent } from './details/movie-details.component';
 import {DetailsService} from './details/details.service';
+import { LoginComponent } from './login/login.component';
+import { FormsModule } from '@angular/forms';
+import { AuthenticationService } from "./services/authentication.service";
 
 
 @NgModule({
@@ -20,18 +23,21 @@ import {DetailsService} from './details/details.service';
     AppComponent,
     NavbarComponent,
     SearchComponent,
-    MovieDetailsComponent
+    MovieDetailsComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [
     Configuration,
     HttpService,
     SearchService,
-    DetailsService
+    DetailsService,
+    AuthenticationService
   ],
   bootstrap: [AppComponent]
 })

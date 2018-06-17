@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 import pl.mrs.movie_raiting_system.dto.UserInfo;
 import pl.mrs.movie_raiting_system.service.UserService2;
 
+import java.security.Principal;
+
 import javax.persistence.EntityNotFoundException;
 
 @RestController
@@ -40,5 +42,10 @@ public class UserRest {
         } catch (EntityNotFoundException e) {
             return ResponseEntity.status(404).build();
         }
+    }
+    
+    @GetMapping
+    public Principal user(Principal user) {
+      return user;
     }
 }
