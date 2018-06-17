@@ -13,14 +13,16 @@ import {HttpClient, HttpClientModule, HttpHandler} from '@angular/common/http';
 import {HttpErrorHandler} from './services/http-error-handler.service';
 import { MovieDetailsComponent } from './details/movie-details.component';
 import {DetailsService} from './details/details.service';
-
+import { FavouriteMoviesComponent } from './favourite-movies/favourite-movies.component';
+import  { FavouriteMoviesService } from "./favourite-movies/favourite-movies.service";
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     SearchComponent,
-    MovieDetailsComponent
+    MovieDetailsComponent,
+    FavouriteMoviesComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +33,8 @@ import {DetailsService} from './details/details.service';
     Configuration,
     HttpService,
     SearchService,
-    DetailsService
+    DetailsService,
+    FavouriteMoviesService
   ],
   bootstrap: [AppComponent]
 })

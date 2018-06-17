@@ -1,22 +1,15 @@
 package pl.mrs.movie_raiting_system.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import pl.mrs.movie_raiting_system.converters.TitleInfoConverter;
-import pl.mrs.movie_raiting_system.converters.UserInfoConverter;
-import pl.mrs.movie_raiting_system.dao.UserRepository;
 import pl.mrs.movie_raiting_system.dto.TitleInfo;
-import pl.mrs.movie_raiting_system.dto.UserInfo;
 import pl.mrs.movie_raiting_system.dto.theMovieDbApi.MovieList;
 import pl.mrs.movie_raiting_system.dto.theMovieDbApi.TvShowList;
-import pl.mrs.movie_raiting_system.entities.User;
 
-import javax.persistence.EntityNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class TitlesService {
