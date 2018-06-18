@@ -30,7 +30,7 @@ public class DetailsService {
         TvShowDetails details = TvShowDetailsConverter.getDetails(result);
         details.setSeasons(new Season[details.getNumberOfSeasons()]);
 
-        for(int i=1; i <= details.getNumberOfSeasons(); i++) {
+        for(int i=1; i <+ details.getNumberOfSeasons(); i++) {
             query = "https://api.themoviedb.org/3/tv/" + id + "/season/" + i + "?api_key=" + apiKey;
             Season season = restTemplate.getForObject(query, Season.class);
             details.getSeasons()[i - 1] = season;

@@ -1,0 +1,81 @@
+<div *ngIf="details">
+  <table>
+    <tr>
+      <td width="300"><img src="{{details.posterPath}}" />
+      </td>
+      <td>
+        <table>
+          <tr>
+            <td width="200" align="left">Name: </td>
+            <td align="left">{{details.name}}</td>
+          </tr>
+          <tr>
+            <td align="left">Genres: </td>
+            <td align="left"><span *ngFor="let genre of details.genres">{{genre.name}} </span></td>
+          </tr>
+          <tr>
+            <td align="left">First air date: </td>
+            <td align="left">{{details.firstAirDate}}</td>
+          </tr>
+          <tr>
+            <td align="left">First air date: </td>
+            <td align="left">{{details.lastAirDate}}</td>
+          </tr>
+          <tr>
+            <td align="left">Number of episodes: </td>
+            <td align="left">{{details.numberOfEpisodes}}</td>
+          </tr>
+          <tr>
+            <td align="left">Number of seasons: </td>
+            <td align="left">{{details.numberOfSeasons}}</td>
+          </tr>
+          <tr>
+            <td align="left">Average vote: </td>
+            <td align="left">{{details.averageVote}}</td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+  {{details.overview}}
+  <table class="table">
+    <tr align="left">
+      <th>Seasons</th>
+    </tr>
+    <tr *ngFor="let season of details.seasons" align="left" class="page-link" (click)="selectedSeason = season.season_number">
+      <td>
+        Season {{season.season_number}}
+        <table *ngIf="selectedSeason==season.season_number" class="table">
+          <tr *ngFor="let episode of season.episodes" class="page-link" (click)="selectedEpisode = episode.episode_number">
+            <td>
+              <table>
+                <tr>
+                  <td>Episode {{episode.episode_number}}  </td>
+                  <td>{{episode.name}}</td>
+                </tr>
+                <tr *ngIf="selectedEpisode == episode.episode_number">
+                  <td>
+                    <table>
+                      <tr>
+                        <td>Air date:  </td>
+                        <td>{{episode.air_date}}</td>
+                      </tr>
+                      <tr>
+                        <td>Average vote:  </td>
+                        <td>{{episode.vote_average}}</td>
+                      </tr>
+                      <tr>
+                        <td>Overview:  </td>
+                        <td>{{episode.overview}}</td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</div>
