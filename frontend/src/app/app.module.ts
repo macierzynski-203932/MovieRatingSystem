@@ -22,7 +22,7 @@ import { XhrInterceptor } from './xhr-interceptor';
 import { AuthGuardService } from './services/auth-guard.service';
 import { RegisterComponent } from './register/register.component';
 import { RegisterService } from './register/register.service';
-//import { TvShowDetailsComponent } from './details/tv-show-details/tv-show-details.component';
+import {TvShowDetailsComponent} from './details/tv-show-details/tv-show-details.component';
 
 @NgModule({
   declarations: [
@@ -32,8 +32,7 @@ import { RegisterService } from './register/register.service';
     MovieDetailsComponent,
     LoginComponent,
     RegisterComponent,
-   // TvShowDetailsComponent
-
+    TvShowDetailsComponent,
     FavouriteMoviesComponent
   ],
   imports: [
