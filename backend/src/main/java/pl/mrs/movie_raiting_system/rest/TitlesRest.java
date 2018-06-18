@@ -20,7 +20,7 @@ import pl.mrs.movie_raiting_system.service.TitlesService;
 
 @RestController
 @RequestMapping("/api/title")
-@CrossOrigin(origins="http://localhost:4200", allowCredentials="true")
+//@CrossOrigin(origins="http://localhost:4200", allowCredentials="true")
 @Api(value = "Movies and tv shows",
         basePath = "/api/title",
         produces = "application/json",
