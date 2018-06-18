@@ -1,7 +1,5 @@
 package pl.mrs.movie_raiting_system.converters;
 
-import static org.mockito.Mockito.RETURNS_DEEP_STUBS;
-
 import pl.mrs.movie_raiting_system.dto.UserInfo;
 import pl.mrs.movie_raiting_system.entities.User;
 
