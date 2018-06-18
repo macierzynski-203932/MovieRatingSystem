@@ -12,7 +12,7 @@ export class SearchService {
 
   search(query: string) :Observable<SearchResponse[]> {
     var url = this.configuration.ServerWithApiUrl + "/title/search?query=" + query;
-    return this.httpService.get<SearchResponse[]>(url);
+    return this.httpService.authenticatedGet<SearchResponse[]>(url);
   }
 
 }
