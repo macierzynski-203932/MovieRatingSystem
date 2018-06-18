@@ -3,17 +3,26 @@ package pl.mrs.movie_raiting_system.rest;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import pl.mrs.movie_raiting_system.converters.UserInfoConverter;
 import pl.mrs.movie_raiting_system.dto.UserInfo;
 import pl.mrs.movie_raiting_system.service.UserService;
+import pl.mrs.movie_raiting_system.service.UserService2;
+
+import java.security.Principal;
 
 import javax.persistence.EntityNotFoundException;
 
 @RestController
 @RequestMapping("/api/user")
+@CrossOrigin(origins="http://localhost:4200", allowCredentials="true")
 @Api(value = "Current user",
         basePath = "/api/user",
         produces = "application/json",
@@ -21,7 +30,10 @@ import javax.persistence.EntityNotFoundException;
 public class UserRest {
 
     @Autowired
-    private UserService userService;
+    private UserService2 userService;
+    
+    @Autowired
+    private UserService service;
 
     @ApiOperation(value = "Returns information about user",
             response = UserInfo.class)
@@ -40,5 +52,22 @@ public class UserRest {
         } catch (EntityNotFoundException e) {
             return ResponseEntity.status(404).build();
         }
+    }
+    
+    @GetMapping
+    public Principal user(Principal user) {
+      return user;
+    }
+    
+    @PostMapping("/register")
+    public ResponseEntity registerUser(@RequestBody UserInfo userData) {
+    	
+    	try {
+    		service.save(UserInfoConverter.getUser(userData));
+    		return ResponseEntity.ok().build();
+		} catch (Exception e) {
+			return ResponseEntity.unprocessableEntity().build();
+		}
+    	
     }
 }

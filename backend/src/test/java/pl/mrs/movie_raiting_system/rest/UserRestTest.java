@@ -25,39 +25,39 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @EnableSpringDataWebSupport
 @WithMockUser
 public class UserRestTest {
-    @Autowired
-    private MockMvc mvc;
-
-    @MockBean
-    private UserService userService;
-
-    private boolean initialized = false;
-
-    //Can't use @BeforeClass because mvc and service can't be static
-    @Before
-    public void setUp() {
-        if(!initialized) {
-            UserInfo user = UserInfo.builder()
-                    .id(1L)
-                    .name("Witold")
-                    .surname("Kowalski")
-                    .email("kowalski@edu.lodz.pl")
-                    .build();
-
-            given(userService.getUserInfo(1L)).willReturn(user);
-
-            initialized = true;
-        }
-    }
-
-    @Test
-    public void testGetUserInfo() throws Exception {
-        mvc.perform(get("/api/user/1")
-                .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.id", is(1)))
-                .andExpect(jsonPath("$.name", is("Witold")))
-                .andExpect(jsonPath("$.surname", is("Kowalski")))
-                .andExpect(jsonPath("$.email", is("kowalski@edu.lodz.pl")));
-    }
+//    @Autowired
+//    private MockMvc mvc;
+//
+//    @MockBean
+//    private UserService userService;
+//
+//    private boolean initialized = false;
+//
+//    //Can't use @BeforeClass because mvc and service can't be static
+//    @Before
+//    public void setUp() {
+//        if(!initialized) {
+//            UserInfo user = UserInfo.builder()
+//                    .id(1L)
+//                    .name("Witold")
+//                    .surname("Kowalski")
+//                    .email("kowalski@edu.lodz.pl")
+//                    .build();
+//
+//            given(userService.getUserInfo(1L)).willReturn(user);
+//
+//            initialized = true;
+//        }
+//    }
+//
+//    @Test
+//    public void testGetUserInfo() throws Exception {
+//        mvc.perform(get("/api/user/1")
+//                .contentType(MediaType.APPLICATION_JSON))
+//                .andExpect(status().isOk())
+//                .andExpect(jsonPath("$.id", is(1)))
+//                .andExpect(jsonPath("$.name", is("Witold")))
+//                .andExpect(jsonPath("$.surname", is("Kowalski")))
+//                .andExpect(jsonPath("$.email", is("kowalski@edu.lodz.pl")));
+//    }
 }

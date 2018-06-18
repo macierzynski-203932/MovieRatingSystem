@@ -5,20 +5,35 @@
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a class="nav-link" routerLink="/" >Main Page</a>
+          <a class="nav-link" routerLink="/">Main Page</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/search" >Search</a>
+          <a class="nav-link" routerLink="/search">Search</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/FavouriteMovies" >Show Favourite Movies</a>
         </li>
       </ul>
-      <ul class="nav navbar-nav ml-auto">
-        <!--<li class="list-item">-->
-          <!--<a class="nav-link" [routerLink]="['/register']" i18n="@@registerNavBtn"><fa-icon icon="user-circle"></fa-icon> Register</a>-->
-        <!--</li>-->
-        <!--<li class="list-item">-->
-          <!--<a class="nav-link" [routerLink]="['/login']" i18n="@@loginNavBtn"><fa-icon icon="sign-in-alt"></fa-icon> Log In</a>-->
-        <!--</li>-->
-      </ul>
+
+
+      <h1 class="text-light" *ngIf="authenticationService.authenticated; then userBlock; else loginOrRegisterBlock">{{authenticationService.authenticatedUser}}</h1>
+
+      <ng-template #userBlock>
+        <h2 class="text-light userBlock">{{authenticationService.authenticatedUser}}</h2>
+        <a (click)="logout()" class="btn btn-default logutBtn">Logout</a>
+      </ng-template>
+      
+      <ng-template #loginOrRegisterBlock>
+        <ul class="nav navbar-nav ml-auto">
+          <li class="list-item">
+            <a class="nav-link" [routerLink]="['/register']" i18n="@@registerNavBtn">Register</a>
+          </li>
+          <li class="list-item">
+            <a class="nav-link" [routerLink]="['/login']" i18n="@@loginNavBtn">Log In</a>
+          </li>
+        </ul>
+      </ng-template>
+
     </div>
   </div>
 </nav>

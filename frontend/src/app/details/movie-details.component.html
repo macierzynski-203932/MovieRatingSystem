@@ -25,9 +25,13 @@
             <td align="left">Average vote: </td>
             <td align="left">{{details.vote_average}}</td>
           </tr>
+          <tr>
+            <button class="btn btn-primary"
+                    (click)="addMovie()">Add to favourite</button>
+          </tr>
         </table>
-      </td>
     </tr>
   </table>
   {{details.overview}}
+
 </div>

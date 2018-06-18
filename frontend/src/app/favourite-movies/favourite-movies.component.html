@@ -1,0 +1,36 @@
+<h2>My Favourite Movies</h2>
+<ul>
+  <li *ngFor="let movie of favouriteMovies">
+    <div *ngIf="movie">
+      <table>
+        <tr>
+          <td width="300"><img src="{{movie.poster_path}}" />
+          </td>
+          <td>
+            <table>
+              <tr>
+                <td width="200" align="left">Title: </td>
+                <td align="left">{{movie.title}}</td>
+              </tr>
+              <tr>
+                <td align="left">Budget: </td>
+                <td align="left">{{movie.budget}}</td>
+              </tr>
+              <tr>
+                <td align="left">Release date: </td>
+                <td align="left">{{movie.release_date}}</td>
+              </tr>
+              <tr>
+                <td align="left">Average vote: </td>
+                <td align="left">{{movie.vote_average}}</td>
+              </tr>
+
+            </table>
+        </tr>
+      </table>
+      {{movie.overview}}
+
+    </div>
+
+  </li>
+</ul>
