@@ -11,11 +11,15 @@ import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import pl.mrs.movie_raiting_system.dto.UserInfo;
-import pl.mrs.movie_raiting_system.service.UserService;
-import pl.mrs.movie_raiting_system.service.UserService2;
-import pl.mrs.movie_raiting_system.service.UserServiceImpl;
+import pl.mrs.movie_raiting_system.dto.theMovieDbApi.MovieDetails;
+import pl.mrs.movie_raiting_system.entities.Movie;
+import pl.mrs.movie_raiting_system.service.DetailsService;
+import pl.mrs.movie_raiting_system.service.MovieService;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -23,18 +27,15 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(UserRest.class)
+@WebMvcTest(MovieRest.class)
 @EnableSpringDataWebSupport
 @WithMockUser
-public class UserRestTest {
+public class MovieRestTest {
     @Autowired
     private MockMvc mvc;
 
     @MockBean
-    private UserService2 userService;
-
-    @MockBean
-    private UserService service;
+    private MovieService movieService;
 
     private boolean initialized = false;
 
@@ -42,27 +43,25 @@ public class UserRestTest {
     @Before
     public void setUp() {
         if(!initialized) {
-            UserInfo user = UserInfo.builder()
-                    .id(1L)
-                    .name("Witold")
-                    .surname("Kowalski")
-                    .email("kowalski@edu.lodz.pl")
-                    .build();
+            List<Movie> movies = new ArrayList<>();
+            movies.add(Movie.builder().id(1L).title("Avengers").build());
+            movies.add(Movie.builder().id(2L).title("Thor").build());
 
-            given(userService.getUserInfo(1L)).willReturn(user);
+            given(movieService.getFavouriteMovies()).willReturn(movies);
 
             initialized = true;
         }
     }
 
     @Test
-    public void testGetUserInfo() throws Exception {
-        mvc.perform(get("/api/user/1")
+    public void testGetFavouriteMovies() throws Exception {
+        mvc.perform(get("/api/movies/favourite")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.id", is(1)))
-                .andExpect(jsonPath("$.name", is("Witold")))
-                .andExpect(jsonPath("$.surname", is("Kowalski")))
-                .andExpect(jsonPath("$.email", is("kowalski@edu.lodz.pl")));
+                .andExpect(jsonPath("$", hasSize(2)))
+                .andExpect(jsonPath("$[0].id", is(1)))
+                .andExpect(jsonPath("$[1].id", is(2)))
+                .andExpect(jsonPath("$[0].title", is("Avengers")))
+                .andExpect(jsonPath("$[1].title", is("Thor")));
     }
 }

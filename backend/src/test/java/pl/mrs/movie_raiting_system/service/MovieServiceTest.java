@@ -1,35 +1,34 @@
 package pl.mrs.movie_raiting_system.service;
 
 import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.test.context.junit4.SpringRunner;
-import pl.mrs.movie_raiting_system.dto.UserInfo;
+import pl.mrs.movie_raiting_system.entities.Movie;
 
 import javax.persistence.EntityNotFoundException;
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
-public class UserServiceTest extends ServiceTest{
+public class MovieServiceTest extends ServiceTest{
     @TestConfiguration
-    static class UserServiceTestContextConfiguration {
+    static class MovieServiceTestContextConfiguration {
 
         @Bean
-        public UserService2 userService() {
-            return new UserService2();
+        public MovieService movieService() {
+            return new MovieService();
         }
     }
 
     @Autowired
-    private UserService2 service;
+    private MovieService service;
 
     @Before
     public void setUp() {
@@ -37,11 +36,11 @@ public class UserServiceTest extends ServiceTest{
     }
 
     @Test
-    public void testGetUserInfo() throws EntityNotFoundException {
-        UserInfo user = service.getUserInfo(user1.getId());
-        assertEquals(user.getId(), user1.getId());
-        assertEquals(user.getEmail(), user1.getEmail());
-        assertEquals(user.getName(), user1.getName());
-        assertEquals(user.getSurname(), user1.getSurname());
+    public void testGetFavouriteMovies() throws EntityNotFoundException {
+        List<Movie> movies = service.getFavouriteMovies();
+        assertEquals(movies.get(0).getId(), movie2.getId());
+        assertEquals(movies.get(0).getTitle(), movie2.getTitle());
+        assertEquals(movies.get(1).getId(), movie3.getId());
+        assertEquals(movies.get(1).getTitle(), movie3.getTitle());
     }
 }
