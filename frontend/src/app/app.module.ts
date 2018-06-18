@@ -13,6 +13,8 @@ import {HttpClient, HttpClientModule, HttpHandler, HTTP_INTERCEPTORS} from '@ang
 import {HttpErrorHandler} from './services/http-error-handler.service';
 import { MovieDetailsComponent } from './details/movie-details.component';
 import {DetailsService} from './details/details.service';
+import { FavouriteMoviesComponent } from './favourite-movies/favourite-movies.component';
+import  { FavouriteMoviesService } from "./favourite-movies/favourite-movies.service";
 import { LoginComponent } from './login/login.component';
 import { FormsModule } from '@angular/forms';
 import { AuthenticationService } from "./services/authentication.service";
@@ -21,7 +23,6 @@ import { AuthGuardService } from './services/auth-guard.service';
 import { RegisterComponent } from './register/register.component';
 import { RegisterService } from './register/register.service';
 //import { TvShowDetailsComponent } from './details/tv-show-details/tv-show-details.component';
-
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { RegisterService } from './register/register.service';
     RegisterComponent,
    // TvShowDetailsComponent
 
+    FavouriteMoviesComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +50,8 @@ import { RegisterService } from './register/register.service';
     AuthenticationService,
     RegisterService,
     AuthGuardService,
-    { provide: HTTP_INTERCEPTORS, useClass: XhrInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: XhrInterceptor, multi: true },
+    FavouriteMoviesService
   ],
   bootstrap: [AppComponent]
 })

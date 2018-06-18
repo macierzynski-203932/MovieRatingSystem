@@ -1,11 +1,8 @@
 package pl.mrs.movie_raiting_system.converters;
 
 import pl.mrs.movie_raiting_system.dto.TitleInfo;
-import pl.mrs.movie_raiting_system.dto.UserInfo;
 import pl.mrs.movie_raiting_system.dto.theMovieDbApi.MovieInfo;
-import pl.mrs.movie_raiting_system.dto.theMovieDbApi.TitleList;
 import pl.mrs.movie_raiting_system.dto.theMovieDbApi.TvShowInfo;
-import pl.mrs.movie_raiting_system.entities.User;
 
 public class TitleInfoConverter {
 

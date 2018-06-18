@@ -1,15 +1,25 @@
 package pl.mrs.movie_raiting_system.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+import pl.mrs.movie_raiting_system.converters.MovieConverter;
+import pl.mrs.movie_raiting_system.dao.MovieRepository;
+import pl.mrs.movie_raiting_system.dto.theMovieDbApi.MovieDetails;
+import pl.mrs.movie_raiting_system.entities.Movie;
+import javax.validation.Valid;
 import pl.mrs.movie_raiting_system.converters.TvShowDetailsConverter;
 import pl.mrs.movie_raiting_system.dto.theMovieDbApi.Season;
 import pl.mrs.movie_raiting_system.dto.TvShowDetails;
-import pl.mrs.movie_raiting_system.dto.theMovieDbApi.MovieDetails;
+
 
 @Service
 public class DetailsService {
     private String apiKey = "28687a8a2665a5be8f7fc9534674e52f";
+
+    @Autowired
+    private MovieRepository movieRepository;
+
 
     public MovieDetails getMovieInfo(Long id) {
         RestTemplate restTemplate = new RestTemplate();
@@ -20,6 +30,12 @@ public class DetailsService {
         return result;
     }
 
+    public void saveFavouriteMovie(MovieDetails movie){
+        @Valid
+        Movie m = MovieConverter.toMovie(movie);
+
+            movieRepository.save( m);
+    }
 
     public TvShowDetails getTvShowInfo(Long id) {
         RestTemplate restTemplate = new RestTemplate();
@@ -39,3 +55,4 @@ public class DetailsService {
     }
 
 }
+
