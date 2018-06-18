@@ -13,4 +13,15 @@ public class UserInfoConverter {
                 .email(user.getEmail())
                 .build();
     }
+    
+    public static User getUser(UserInfo userInfo) {
+    	return User.builder()
+    			.id(userInfo.getId())
+    			.name(userInfo.getName())
+    			.surname(userInfo.getSurname())
+    			.username(userInfo.getUsername())
+    			.password(userInfo.getPassword())
+    			.email(userInfo.getEmail())
+    			.build();
+    }
 }
