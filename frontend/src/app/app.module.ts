@@ -20,7 +20,7 @@ import { XhrInterceptor } from './xhr-interceptor';
 import { AuthGuardService } from './services/auth-guard.service';
 import { RegisterComponent } from './register/register.component';
 import { RegisterService } from './register/register.service';
-import { TvShowDetailsComponent } from './details/tv-show-details/tv-show-details.component';
+//import { TvShowDetailsComponent } from './details/tv-show-details/tv-show-details.component';
 
 
 @NgModule({
@@ -31,7 +31,7 @@ import { TvShowDetailsComponent } from './details/tv-show-details/tv-show-detail
     MovieDetailsComponent,
     LoginComponent,
     RegisterComponent,
-    TvShowDetailsComponent
+   // TvShowDetailsComponent
 
   ],
   imports: [

@@ -1,5 +1,5 @@
 import {Genre} from './genre';
-import {Season} from './season';
+//import {Season} from './season';
 
 export class TvShowDetails {
  firstAirDate: string;
@@ -13,5 +13,5 @@ export class TvShowDetails {
  overview: string;
  posterPath: string;
  averageVote: string;
- seasons: Season[];
+// seasons: Season[];
 }
