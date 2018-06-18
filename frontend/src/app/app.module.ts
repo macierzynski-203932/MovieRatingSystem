@@ -17,6 +17,7 @@ import { LoginComponent } from './login/login.component';
 import { FormsModule } from '@angular/forms';
 import { AuthenticationService } from "./services/authentication.service";
 import { XhrInterceptor } from './xhr-interceptor';
+import { AuthGuardService } from './services/auth-guard.service';
 
 
 @NgModule({
@@ -39,6 +40,7 @@ import { XhrInterceptor } from './xhr-interceptor';
     SearchService,
     DetailsService,
     AuthenticationService,
+    AuthGuardService,
     { provide: HTTP_INTERCEPTORS, useClass: XhrInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
