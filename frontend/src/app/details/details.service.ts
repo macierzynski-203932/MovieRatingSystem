@@ -13,12 +13,18 @@ export class DetailsService {
 
   getMovieDetails(id: string) :Observable<MovieDetails> {
     var url = this.configuration.ServerWithApiUrl + "/details/movie/" + id;
-    return this.httpService.get<MovieDetails>(url);
+    return this.httpService.authenticatedGet<MovieDetails>(url);
+  }
+
+
+  addMovieToFavourite( movie: MovieDetails): Observable<any> {
+    var AddToFavouriteUrl = this.configuration.ServerWithApiUrl + "/details/movie/favourite";
+  return this.httpService.authenticatedPost("http://localhost:8080/api/details/movie/favourite", movie);
   }
 
   getTvShowDetails(id: string) :Observable<TvShowDetails> {
     var url = this.configuration.ServerWithApiUrl + "/details/tv/" + id;
     return this.httpService.get<TvShowDetails>(url);
-
   }
+
 }
