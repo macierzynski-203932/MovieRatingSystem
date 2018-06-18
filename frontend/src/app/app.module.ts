@@ -18,6 +18,8 @@ import { FormsModule } from '@angular/forms';
 import { AuthenticationService } from "./services/authentication.service";
 import { XhrInterceptor } from './xhr-interceptor';
 import { AuthGuardService } from './services/auth-guard.service';
+import { RegisterComponent } from './register/register.component';
+import { RegisterService } from './register/register.service';
 
 
 @NgModule({
@@ -26,7 +28,8 @@ import { AuthGuardService } from './services/auth-guard.service';
     NavbarComponent,
     SearchComponent,
     MovieDetailsComponent,
-    LoginComponent
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -40,6 +43,7 @@ import { AuthGuardService } from './services/auth-guard.service';
     SearchService,
     DetailsService,
     AuthenticationService,
+    RegisterService,
     AuthGuardService,
     { provide: HTTP_INTERCEPTORS, useClass: XhrInterceptor, multi: true }
   ],
