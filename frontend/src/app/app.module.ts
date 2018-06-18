@@ -15,7 +15,6 @@ import { MovieDetailsComponent } from './details/movie-details.component';
 import {DetailsService} from './details/details.service';
 import { FavouriteMoviesComponent } from './favourite-movies/favourite-movies.component';
 import  { FavouriteMoviesService } from "./favourite-movies/favourite-movies.service";
-import { TvShowDetailsComponent } from './details/tv-show-details/tv-show-details.component';
 import { LoginComponent } from './login/login.component';
 import { FormsModule } from '@angular/forms';
 import { AuthenticationService } from "./services/authentication.service";
@@ -51,7 +50,7 @@ import { RegisterService } from './register/register.service';
     AuthenticationService,
     RegisterService,
     AuthGuardService,
-    { provide: HTTP_INTERCEPTORS, useClass: XhrInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: XhrInterceptor, multi: true },
     FavouriteMoviesService
   ],
   bootstrap: [AppComponent]

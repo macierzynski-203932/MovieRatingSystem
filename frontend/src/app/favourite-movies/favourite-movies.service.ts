@@ -11,6 +11,6 @@ export class FavouriteMoviesService {
 
   getFavouriteMovies() :Observable<FavouriteMovie[]>{
     var url = this.configuration.ServerWithApiUrl + "/movies/favourite";
-    return this.httpService.get<FavouriteMovie[]>(url);
+    return this.httpService.authenticatedGet<FavouriteMovie[]>(url);
   }
 }

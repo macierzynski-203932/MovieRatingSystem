@@ -14,7 +14,7 @@ const routes: Routes = [
   { path: '', redirectTo: '', pathMatch: 'full'},
   { path: 'search', component: SearchComponent, pathMatch: 'full', canActivate: [AuthGuard] },
   { path: 'details/movie/:id', component: MovieDetailsComponent, canActivate: [AuthGuard]},
-  { path: 'FavouriteMovies', component: FavouriteMoviesComponent},
+  { path: 'FavouriteMovies', component: FavouriteMoviesComponent, canActivate: [AuthGuard]},
   //{ path: 'details/tv/:id', component: TvShowDetailsComponent, canActivate: [AuthGuard]},
   { path: 'login', component: LoginComponent},
   { path: 'register', component: RegisterComponent}]

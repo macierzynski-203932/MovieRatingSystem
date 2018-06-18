@@ -7,6 +7,7 @@ import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,6 +17,7 @@ import pl.mrs.movie_raiting_system.service.MovieService;
 
 @RestController
 @RequestMapping("/api/movies")
+@CrossOrigin(origins="http://localhost:4200", allowCredentials="true")
 @Api(value = "Rest for movies",
         basePath = "/api/movies",
         produces = "application/json",
@@ -39,7 +41,7 @@ public class MovieRest {
         try{
             HttpHeaders headers = new HttpHeaders();
             headers.add("Access-Control-Allow-Origin", "*");
-            return ResponseEntity.ok().headers(headers).body(movieService.getFavouriteMovies());
+            return ResponseEntity.ok().body(movieService.getFavouriteMovies());
         } catch (HttpClientErrorException e){
             return ResponseEntity.status(404).build();
         }

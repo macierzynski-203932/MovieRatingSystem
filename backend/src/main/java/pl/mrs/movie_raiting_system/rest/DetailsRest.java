@@ -18,7 +18,7 @@ import pl.mrs.movie_raiting_system.service.DetailsService;
 
 @RestController
 @RequestMapping("/api/details")
-//@CrossOrigin(origins="http://localhost:4200", allowCredentials="true")
+@CrossOrigin(origins="http://localhost:4200", allowCredentials="true")
 @Api(value = "Movies and tv shows details",
         basePath = "/api/title",
         produces = "application/json",
@@ -45,7 +45,7 @@ public class DetailsRest {
 
             HttpHeaders headers = new HttpHeaders();
             headers.add("Access-Control-Allow-Origin", "*");
-            return ResponseEntity.ok().headers(headers).body(detailsService.getMovieInfo(id));
+            return ResponseEntity.ok().body(detailsService.getMovieInfo(id));
         } catch (HttpClientErrorException e) {
             return ResponseEntity.status(404).build();
         }
@@ -68,7 +68,7 @@ public class DetailsRest {
             HttpHeaders headers = new HttpHeaders();
             headers.add("Access-Control-Allow-Origin", "*");
             TvShowDetails det = detailsService.getTvShowInfo(id);
-            return ResponseEntity.ok().headers(headers).body(det);
+            return ResponseEntity.ok().body(det);
         } catch (HttpClientErrorException e) {
             return ResponseEntity.status(404).build();
         }
@@ -83,7 +83,7 @@ public class DetailsRest {
             HttpHeaders headers = new HttpHeaders();
             headers.add("Access-Control-Allow-Origin", "*");
             detailsService.saveFavouriteMovie(movie);
-           return ResponseEntity.ok().headers(headers).body("dziala super!");
+           return ResponseEntity.ok().body("dziala super!");
         } catch (Exception e) {
             return ResponseEntity.status(404).build();
         }
