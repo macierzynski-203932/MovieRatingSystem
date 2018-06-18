@@ -24,7 +24,7 @@ export class DetailsService {
 
   getTvShowDetails(id: string) :Observable<TvShowDetails> {
     var url = this.configuration.ServerWithApiUrl + "/details/tv/" + id;
-    return this.httpService.get<TvShowDetails>(url);
+    return this.httpService.authenticatedGet<TvShowDetails>(url);
   }
 
 }
